@@ -1,0 +1,19 @@
+# Configuration for LLM-assisted lyric refinement & local transcription
+refinement:
+  enabled: true
+  privacy_mode: true                    # Required so ModelRouter routes to local Ollama
+  ollama_url: "http://localhost:11434"  # Default Ollama server address
+  model_name: "qwen3.5:9b"              # Specific Qwen model name in Ollama
+  provider_model: "ollama/qwen3.5:9b"   # LangChain/lyrics-transcriber format
+  timeout_seconds: 120                  # Request timeout in seconds for local LLM
+  max_retries: 3                        # Retry count before falling back to rule-based gap fixes
+  temperature: 0.2                      # Low temperature for deterministic lyric alignment
+  fallback_to_rules_on_error: true      # Gracefully fall back if Ollama is unreachable
+
+transcription:
+  local_whisper_model: "small"          # Whisper model size: tiny, base, small, medium, large-v3
+  device: "cpu"                         # Use "cpu" to leave GPU VRAM free for Ollama qwen3.5:9b
+  compute_type: "int8"                  # Fast quantized inference on CPU
+
+output:
+  lrc_mode: "word"                      # "word" for Enhanced A2 (<mm:ss.xx> inline word tags) or "sentence" for line-level LRC

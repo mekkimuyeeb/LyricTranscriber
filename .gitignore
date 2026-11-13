@@ -1,0 +1,23 @@
+# Virtual environments & Python cache
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Generated LRC & transcription output files
+*.lrc
+* (Lyrics Corrections).json
+*.txt
+!requirements.txt
+
+# Local lyric scratch files without extensions
+cheri
+Venus
+
+# Local task tracking
+tasks/
